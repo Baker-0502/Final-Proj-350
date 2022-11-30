@@ -71,7 +71,7 @@ int main(int argc, char **argv)
         cout << "Please specify a file or files that you want to process as an argument. Example:\n./qsDriver 1_10Floats.txt";
     }
 
-    // Import input
+    // Import input, Possibly create map to associate file?
     for (int i = 1; i < argc; i++)
     {
         // Open Files, Grab Lines
@@ -91,8 +91,7 @@ int main(int argc, char **argv)
         // Close stream for next input
         reader.close();
     }
-    cout << input.size() << endl
-    ;
+    cout << input.size() << endl;
 
     for (int i = 0; i < input.size(); i++) {
         cout << "File " << i+1 << endl;
@@ -101,8 +100,8 @@ int main(int argc, char **argv)
         }
     }
 
-    // Process Input
-
+    // Process Input, Log time to a "times" file
+    
 
     // Go through vectors
     return 0;
