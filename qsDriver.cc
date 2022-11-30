@@ -25,7 +25,7 @@ int partition(vector<double> &arr, int low, int high)
     temp = arr[i + 1];
     arr[i + 1] = arr[high];
     arr[high] = temp;
-    return i+1;
+    return i + 1;
 }
 
 void quickSort(vector<double> &arr, int low, int high)
@@ -40,38 +40,70 @@ void quickSort(vector<double> &arr, int low, int high)
 
 void quickSort(vector<double> &arr)
 {
-    quickSort(arr, 0, arr.size()-1);
+    quickSort(arr, 0, arr.size() - 1);
 }
 
-
+vector<double> parse(string inLn)
+{
+    // Vars
+    vector<double> returnVec;
+    const string delim = " ";
+    size_t pos = 0;
+    double temp = 0;
+    // Take input line and split at space delimiter
+    while ((pos = inLn.find(delim)) != string::npos)
+    {
+        // Push back parsed double
+        temp = stod(inLn.substr(0, pos));
+        returnVec.push_back(temp);
+        // Delete old data in the line so we can process the next value
+        inLn.erase(0, pos + delim.length());
+    }
+    return returnVec;
+}
 
 int main(int argc, char **argv)
 {
-    // cout << genRandInt(1, 5000) << endl;
-    // cout << genRandFloat() << endl;
-
-    // Create test VECTOR of floats
-    vector<double> testArr = {1.23432, 335.1212, 23.9816, 999.295, 27.001, 27.002, 27.000, 0.11235};
-
-    // Print test array
-    cout << "Test Array: " << endl;
-    for (int i = 0; i < testArr.size(); i++)
+    // TODO: Process Args, File Input, File Output, exec time, etc.
+    vector<vector<double>> input;
+    if (argc <= 1)
     {
-        cout << testArr[i] << " ";
+        cout << "Please specify a file or files that you want to process as an argument. Example:\n./qsDriver 1_10Floats.txt";
     }
 
-    // Quicksort test array
-    quickSort(testArr);
-    cout << endl;
-
-    // Print sorted test array
-    cout << "Sorted Array: " << endl;
-    for (int i = 0; i < testArr.size(); i++)
+    // Import input
+    for (int i = 1; i < argc; i++)
     {
-        cout << testArr[i] << " ";
+        // Open Files, Grab Lines
+        ifstream reader(argv[i]);
+        string line;
+        if (reader.is_open() && reader.good())
+        {
+            getline(reader, line);
+        }
+        else
+        {
+            continue;
+        }
+
+        input.push_back(parse(line)); // Push back new input vector
+
+        // Close stream for next input
+        reader.close();
     }
-    cout << endl;
+    cout << input.size() << endl
+    ;
 
-    //TODO: Process Args, File Input, File Output, exec time, etc.
+    for (int i = 0; i < input.size(); i++) {
+        cout << "File " << i+1 << endl;
+        for (int j = 0; j < input[i].size(); j++) {
+            cout << "Value " << j+1 << ": " << input[i][j] << endl;
+        }
+    }
 
+    // Process Input
+
+
+    // Go through vectors
+    return 0;
 }
