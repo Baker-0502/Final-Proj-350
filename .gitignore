@@ -5,3 +5,4 @@ qsDriver
 ./test_10/*
 ./test_100/*
 ./test_1000/*
+.vscode/*

@@ -121,7 +121,7 @@ int main(int argc, char **argv)
         // Open Files, Grab Lines
         ifstream reader(argv[i]);
         string line;
-        if (reader.is_open() && reader.good())
+        if (reader.is_open() && reader.good() && string(argv[i]) != "-i")
         {
             getline(reader, line);
         }
