@@ -89,7 +89,9 @@ int main(int argc, char **argv)
 
     if (argc <= 1)
     {
-        cout << "Please specify a file or files that you want to process as an argument. Example:\n./qsDriver 1_10Floats.txt";
+        cout << "Not enough arguments\nUsage Example: ./QuickSort 1_10Floats.txt" << endl
+        << "Usage Example with Input and Output flags: ./QuickSort -i 1_10Floats.txt -o execTime.txt avgExecTime.txt sortedArrs.txt" << endl
+        << endl << "For more information, please check the README." << endl;
     }
     // Create conditional to find -o flag, mark pos and process input, create ostreams
     int outStart = -1;
@@ -100,7 +102,7 @@ int main(int argc, char **argv)
             outStart = i;
         }
     }
-    
+
     // if no output flag, assume all files are input
     if (outStart == -1)
     {
@@ -196,7 +198,7 @@ int main(int argc, char **argv)
     filesystem::create_directories("Sorted");
     for (int i = 0; i < input.size(); i++)
     {
-        ofstream temp("./Sorted/" +  to_string(i + 1) + + "_" + filenames[2]);
+        ofstream temp("./Sorted/" + to_string(i + 1) + +"_" + filenames[2]);
         for (int j = 0; j < input[i].size(); j++)
         {
             temp << input[i][j] << " ";
